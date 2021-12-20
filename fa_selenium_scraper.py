@@ -150,13 +150,14 @@ def fa_selenium_scraper(month, year):
                 current_article_text_elements = driver.find_elements_by_xpath("//div[@class = 'article-dropcap ls-0  f-serif']//p")
                 current_article_text = ""
                 for paragraph_i in list(range(0, len(current_article_text_elements))):
-                        current_article_text = current_article_text + current_article_text_elements[paragraph_i].text
+                        current_article_text = current_article_text + current_article_text_elements[paragraph_i].text + " {{Pause=.3}} "
         
                 # combine to get current_article_complete
-                current_article_complete = "Article " + str(i + 1) + " of " + str(article_total_count) + ". . . " + \
-                        current_article_title + ". . . " + current_article_subtitle + \
-                        ". . . " + "By: " + current_article_author + ". . . " + \
-                        current_article_text + "{{split}}" 
+                current_article_complete = "{{Pause=.3}} Foreign Affairs {{Pause=.3}} Article " + \
+                        str(i + 1) + " of " + str(article_total_count) + " {{Pause=.3}} " + \
+                        current_article_title + " {{Pause=.3}} " + current_article_subtitle + \
+                        " {{Pause=.3}} " + "By: " + current_article_author + " {{Pause=.3}} " + \
+                        current_article_text + " {{Pause=.3}} " + "{{split}}" 
                         
                 # split article if it's over excel's 32,767 character limit (no articles should be > 64000 characters)
                 # yes there will be an abrupt cutoff mid-word at 32000 characters, 
